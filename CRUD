@@ -1,0 +1,34 @@
+-- Insert a new customer
+INSERT INTO Customers (name, email) VALUES ('John Doe', 'john@example.com');
+
+-- Insert a new product
+INSERT INTO Products (name, price) VALUES ('T-Shirt', 20.99);
+
+
+
+-- Get all customers and their orders
+SELECT Customers.name, Orders.order_id, Orders.order_date
+FROM Customers
+INNER JOIN Orders ON Customers.customer_id = Orders.customer_id;
+
+-- Get total revenue for each product
+SELECT Products.name, SUM(Products.price * OrderItems.quantity) AS revenue
+FROM Products
+LEFT JOIN OrderItems ON Products.product_id = OrderItems.product_id
+GROUP BY Products.name;
+
+
+-- Update customer email
+UPDATE Customers
+SET email = 'new_email@example.com'
+WHERE customer_id = 1;
+
+
+
+-- Delete a product and its order items
+DELETE FROM Products
+WHERE product_id = 2;
+
+-- Delete a customer and their orders
+DELETE FROM Customers
+WHERE customer_id = 1;
